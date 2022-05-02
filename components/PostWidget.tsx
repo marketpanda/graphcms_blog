@@ -5,8 +5,9 @@ import Link from 'next/link';
 import {getRecentPosts, getSimilarPosts}  from '../services';
 
 
-const  PostWidget = ({categories:any, slug:any}) => {
-  const [relatedPosts, setRelatedPosts] = useState([]);
+
+const  PostWidget = ({categories, slug}:{categories:any, slug:any} ) => {
+  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
 
   useEffect(() => {
     if (slug) { 
@@ -43,9 +44,11 @@ const  PostWidget = ({categories:any, slug:any}) => {
             <p className='text-gray-500 font-xs'>
               {moment(post.createdAt).format('MMM DD, YYY')}
             </p>
-            <Link href={`/post/${post.slug}`} key={index} className='text-md'>
+            <div className='text-md'>
+            <Link href={`/post/${post.slug}`} key={index}>
               {post.title}
             </Link>
+            </div>
           </div>
         </div>
         
